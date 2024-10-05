@@ -14,16 +14,32 @@ int main()
 	
 	setvbuf(stdin, NULL, _IONBF, 0);
 	setvbuf(stdout, NULL, _IONBF, 0);
-	int i = 0, j = 0, r, volume = 100;
-
-	while(1)
+	int i = 0, j = 0, r, volume = 100, elem_c;;
+	long int start_time = 0, end_time = 0, search_time = 0;
+	srand(time(NULL));
+	start_time = clock();
+	while (1) 
 	{
-		srand(time(NULL));
-		long int start_time = clock();
-		int a[volume][volume], b[volume][volume], c[volume][volume], elem_c;
-		std::cout << "volume elements:" << endl;
+	
+		int** a = new int *[volume];
+		for (int z = 0; z < volume; z++) 
+		{
+			a[z] = new int[volume];
+		}
+		int** b = new int* [volume];
+		for (int z = 0; z < volume; z++)
+		{
+			b[z] = new int[volume];
+		}
+		int** c = new int* [volume];
+		for (int z = 0; z < volume; z++)
+		{
+			c[z] = new int[volume];
+		}
+	
+		std::cout << "volume elements:" << volume << endl;
 
-		int elem_c;
+		i = 0; j = 0;
 		while (i < volume)
 		{
 			while (j < volume)
@@ -56,38 +72,50 @@ int main()
 				}
 			}
 		}
-		long int end_time = clock();
+		end_time = clock();
+		search_time = end_time - start_time;
+		delete[]a;
+		delete[]b;
+		delete[]c;
 
-		long int search_time = end_time - start_time;
+		cout << "time: " << search_time / 1000.0 << endl << endl;
 
-		printf("%f", search_time / 1000.0);
-		return(search_time);
 		switch (volume) 
 		{
-		case 100: 
-		{
-			volume += 100;
-		}
-		case 200:
-		{
-			volume += 200;
-		}
-		case 400:
-		{
-			volume += 600;
-		}
-		case 1000:
-		{
-			volume += 1000;
-		}
-		case 2000:
-		{
-			volume += 2000;
-		}
-		case 4000:
-		{
-			volume += 6000;
-		}
+			case 100: 
+			{
+				volume = 200;
+				continue;
+			}
+			case 200:
+			{
+				volume = 400;
+				continue;
+			}
+			case 400:
+			{
+				volume = 1000;
+				continue;
+			}
+			case 1000:
+			{
+				volume = 2000;
+				continue;
+			}
+			case 2000:
+			{
+				volume = 4000;
+				continue;
+			}
+			case 4000:
+			{
+				volume = 10000;
+				continue;
+			}
+			case 10000: 
+			{
+				return 0;
+			}
 		}
 	}
 }
