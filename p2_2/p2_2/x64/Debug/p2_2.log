@@ -1,0 +1,5 @@
+﻿  main.cpp
+C:\prog\PSU\logics\lw2\p2_2\p2_2\main.cpp(25,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\prog\PSU\logics\lw2\p2_2\p2_2\main.cpp(124,15): warning C4804: <=: небезопасное использование типа "bool" в операции
+C:\prog\PSU\logics\lw2\p2_2\p2_2\main.cpp(130,29): warning C4804: <=: небезопасное использование типа "bool" в операции
+  p2_2.vcxproj -> C:\prog\PSU\logics\lw2\p2_2\x64\Debug\p2_2.exe

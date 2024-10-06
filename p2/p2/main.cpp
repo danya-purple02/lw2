@@ -6,40 +6,31 @@
 #include <iomanip>
 using namespace std;
 
-
-
-
 int main() 
 {
-	
 	setvbuf(stdin, NULL, _IONBF, 0);
 	setvbuf(stdout, NULL, _IONBF, 0);
 	int i = 0, j = 0, r, volume = 100, elem_c;;
 	long int start_time = 0, end_time = 0, search_time = 0;
-	srand(time(NULL));
-	start_time = clock();
+
 	while (1) 
 	{
-	
 		int** a = new int *[volume];
+		int** b = new int* [volume];
+		int** c = new int* [volume];
 		for (int z = 0; z < volume; z++) 
 		{
 			a[z] = new int[volume];
-		}
-		int** b = new int* [volume];
-		for (int z = 0; z < volume; z++)
-		{
 			b[z] = new int[volume];
-		}
-		int** c = new int* [volume];
-		for (int z = 0; z < volume; z++)
-		{
 			c[z] = new int[volume];
 		}
 	
 		std::cout << "volume elements:" << volume << endl;
 
+		start_time = clock();
+
 		i = 0; j = 0;
+		srand(time(NULL));
 		while (i < volume)
 		{
 			while (j < volume)
@@ -49,8 +40,9 @@ int main()
 			}
 			i++;
 		}
-		srand(time(NULL));
+
 		i = 0; j = 0;
+		srand(time(NULL));
 		while (i < volume)
 		{
 			while (j < volume)
@@ -60,6 +52,7 @@ int main()
 			}
 			i++;
 		}
+
 		for (i = 0; i < volume; i++)
 		{
 			for (j = 0; j < volume; j++)
@@ -72,6 +65,7 @@ int main()
 				}
 			}
 		}
+
 		end_time = clock();
 		search_time = end_time - start_time;
 		delete[]a;
