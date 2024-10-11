@@ -6,34 +6,35 @@
 #include <iomanip>
 using namespace std;
 
-int main() 
+int main()
 {
 	setvbuf(stdin, NULL, _IONBF, 0);
 	setvbuf(stdout, NULL, _IONBF, 0);
-	int i = 0, j = 0, r, volume = 100, elem_c;;
+	int i = 0, j = 0, r, elem_c;
+	int  volume[7] = { 100, 200, 400, 1000, 2000, 4000, 10000 };
 	long int start_time = 0, end_time = 0, search_time = 0;
 
-	while (1) 
+	for (int y = 0; y < 7; y++)
 	{
-		int** a = new int *[volume];
-		int** b = new int* [volume];
-		int** c = new int* [volume];
-		for (int z = 0; z < volume; z++) 
+		int** a = new int* [volume[y]];
+		int** b = new int* [volume[y]];
+		int** c = new int* [volume[y]];
+		for (int z = 0; z < volume[y]; z++)
 		{
-			a[z] = new int[volume];
-			b[z] = new int[volume];
-			c[z] = new int[volume];
+			a[z] = new int[volume[y]];
+			b[z] = new int[volume[y]];
+			c[z] = new int[volume[y]];
 		}
-	
-		std::cout << "volume elements:" << volume << endl;
+
+		std::cout << "volume elements:" << volume[y] << endl;
 
 		start_time = clock();
 
 		i = 0; j = 0;
 		srand(time(NULL));
-		while (i < volume)
+		while (i < volume[y])
 		{
-			while (j < volume)
+			while (j < volume[y])
 			{
 				a[i][j] = rand() % 100 + 1;
 				j++;
@@ -43,9 +44,9 @@ int main()
 
 		i = 0; j = 0;
 		srand(time(NULL));
-		while (i < volume)
+		while (i < volume[y])
 		{
-			while (j < volume)
+			while (j < volume[y])
 			{
 				b[i][j] = rand() % 100 + 1;
 				j++;
@@ -53,12 +54,12 @@ int main()
 			i++;
 		}
 
-		for (i = 0; i < volume; i++)
+		for (i = 0; i < volume[y]; i++)
 		{
-			for (j = 0; j < volume; j++)
+			for (j = 0; j < volume[y]; j++)
 			{
 				elem_c = 0;
-				for (r = 0; r < volume; r++)
+				for (r = 0; r < volume[y]; r++)
 				{
 					elem_c = elem_c + a[i][r] * b[r][j];
 					c[i][j] = elem_c;
@@ -73,43 +74,5 @@ int main()
 		delete[]c;
 
 		cout << "time: " << search_time / 1000.0 << endl << endl;
-
-		switch (volume) 
-		{
-			case 100: 
-			{
-				volume = 200;
-				continue;
-			}
-			case 200:
-			{
-				volume = 400;
-				continue;
-			}
-			case 400:
-			{
-				volume = 1000;
-				continue;
-			}
-			case 1000:
-			{
-				volume = 2000;
-				continue;
-			}
-			case 2000:
-			{
-				volume = 4000;
-				continue;
-			}
-			case 4000:
-			{
-				volume = 10000;
-				continue;
-			}
-			case 10000: 
-			{
-				return 0;
-			}
-		}
 	}
 }
